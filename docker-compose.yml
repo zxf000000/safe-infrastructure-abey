@@ -172,6 +172,12 @@ services:
       - nginx
     expose:
       - 8080
+    deploy:
+      resources:
+        limits:
+          memory: 10G
+        reservations:
+          memory: 2G
 
   general-rabbitmq:
     image: rabbitmq:alpine

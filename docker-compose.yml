@@ -2,6 +2,7 @@ volumes:
   nginx-shared-txs:
   nginx-shared-cfg:
   nginx-shared-media:
+  nginx-shared-txs-media:
 
 x-healthcheck-db-template: &pghealthcheck
   healthcheck:
@@ -35,6 +36,7 @@ services:
       - nginx-shared-txs:/nginx-txs
       - nginx-shared-cfg:/nginx-cfg
       - nginx-shared-media:/cfg-media
+      - nginx-shared-txs-media:/txs-media
     depends_on:
       - txs-web
       - cfg-web
@@ -128,6 +130,7 @@ services:
     working_dir: /app
     volumes:
       - nginx-shared-txs:/nginx
+      - nginx-shared-txs-media:/app/media
     command: docker/web/run_web.sh
 
   txs-scheduler:
